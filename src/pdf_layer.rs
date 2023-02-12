@@ -414,7 +414,6 @@ impl PdfLayerReference {
             let font = &face_direct_ref.font_data;
 
 	    let face_metrics = font.font_metrics();
-	    println!("units per em: {}", face_metrics.units_per_em);
 	    let percentage_font_scaling = 1000.0 / (face_metrics.units_per_em as f64);
 	    
 	    for ch in text.chars() {
@@ -425,7 +424,7 @@ impl PdfLayerReference {
 		}
 	    }
 	} else {
-	    println!("centering text is not supported for built in fonts, i'm not sure how to get the character widths");
+	    println!("centering text is not supported for built in fonts because i'm not sure how to get the character widths");
 	}
 
 	let font_size_in_mm = (font_size/72.0) * 25.4;
@@ -530,7 +529,6 @@ impl PdfLayerReference {
 
 	let text = text.into();
 	let width = self.get_text_width(&text, font_size, font);
-	println!("width of string: {}", width.0);
 
 	let new_x =  Mm(x.0 - (0.5*width.0));
         self.set_text_cursor(new_x, y);
